@@ -1,7 +1,7 @@
 //This is personal portfolio of the gitHub user with username theEverlastingStudentDodo
 // theEverlastingStudentDodo does not give consent to everybody copying this script for whatever use
 
-import { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import { configValues } from '../env-config/envConfig';
 
 
@@ -12,16 +12,16 @@ export class LoginPage {
   readonly passwordField: Locator;
   readonly loginButton: Locator;
   readonly errorMessage: Locator;
+  readonly errorBox: Locator;
 
+  //Locators
   constructor(page: Page) {
     this.page = page;
     this.usernameField = page.locator('#user-name');
     this.passwordField = page.locator('#password');
     this.loginButton = page.locator('#login-button');
+    this.errorBox = page.locator('[data-test="error"]');
   }
-
-  // Locators
-
 
   // Actions
   async navigateToLogin() {
