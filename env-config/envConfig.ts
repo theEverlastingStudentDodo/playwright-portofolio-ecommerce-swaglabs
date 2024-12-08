@@ -18,5 +18,8 @@ invalidPass: process.env.INVALID_PASSWORD || '',
 
 //setup locked creds
 lockedCreds: process.env.LOCKED_USERNAME || '',
-lockedPass: process.env.LOCKED_PASSWORD|| ''
+lockedPass: process.env.LOCKED_PASSWORD|| '',
+
+//Go to main page url
+mainPageURL: process.env.MAIN_PAGE_URL || ''
 }
