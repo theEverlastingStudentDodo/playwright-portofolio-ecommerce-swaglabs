@@ -9,13 +9,14 @@ import { MainPage } from '../../pages/main.page';
 
 
 test.describe('Login Functionality', () => {
-    test('Login with valid credential', async ({ page }) => {
+
+test('Login with valid credential', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const mainPage = new MainPage(page);
-       await loginPage.navigateToLogin();
-       await loginPage.login(configValues.validCreds, configValues.validPass)
-       const header = mainPage.headerField
-       await expect(header).toBeVisible();
+    await loginPage.navigateToLogin();
+    await loginPage.login(configValues.validCreds, configValues.validPass);
+    const header = mainPage.headerField;
+    await expect(header).toBeVisible();
 })
 
 test('Login with invalid credential', async ({ page }) => {
@@ -56,6 +57,18 @@ test('Login with locked creds', async ({ page }) => {
     await loginPage.login('', '');
     const error = loginPage.errorBox;
     await expect(error).toHaveText(loginMessages.missingUsername);
+})
+
+test('Logout', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const mainPage = new MainPage(page);
+    await loginPage.navigateToLogin();
+    await loginPage.login(configValues.validCreds, configValues.validPass);
+    const header = mainPage.headerField;
+    await expect(header).toBeVisible();
+    await mainPage.logout();
+    const loginButton = loginPage.loginButton;
+    await expect(loginButton).toBeVisible();
 })
 
 })
