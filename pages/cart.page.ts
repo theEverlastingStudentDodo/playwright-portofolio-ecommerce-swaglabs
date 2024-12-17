@@ -2,7 +2,8 @@
 // theEverlastingStudentDodo does not give consent to everybody copying this script for whatever use
 
 import { Locator, Page } from '@playwright/test';
-import { configValues } from '../env-config/envConfig';
+import { Checkout } from './checkout.page';
+import { checkoutPageTexts } from '../messages/checkoutPageTexts';
 
 export class CartPage {
 
@@ -11,6 +12,6 @@ export class CartPage {
 
     //Locators
   constructor(page: Page) {
-    this.cartList = page.locator('[data-test="cart-list"]')
+    this.cartList = page.locator('[data-test="cart-list"]');
   }
 }    

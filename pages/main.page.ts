@@ -3,6 +3,8 @@
 
 import { Locator, Page, expect } from '@playwright/test';
 import { configValues } from '../env-config/envConfig';
+import { mainPageTexts } from '../messages/mainPageTexts';
+import { promises } from 'dns';
 
 export class MainPage {
 
@@ -24,7 +26,7 @@ export class MainPage {
         this.addToCartButton = page.locator('.btn_inventory'); //general locator for add to cart button
         this.product = page.locator('.inventory_item');
         this.productName = page.locator('.inventory_item_name ');
-        this.cartButton = page.locator('[data-test="shopping-cart-link"]')
+        this.cartButton = page.locator('#shopping_cart_container');
     }
 
     //Actions
@@ -48,5 +50,11 @@ export class MainPage {
           } else {
             console.log('Already on the main page.');
           }
-      }  
+      }
+
+      async browseProductAndAddToCart(productName: string) {
+        const productCard = this.product.filter({hasText: productName});
+        await productCard.locator(this.addToCartButton).click();
+}
+
 }
