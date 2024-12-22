@@ -1,0 +1,31 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create .env file from secrets
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+          echo "VALID_USERNAME=${{ secrets.VALID_USERNAME }}" >> .env
+          echo "VALID_PASSWORD=${{ secrets.VALID_PASSWORD }}" >> .env
+          echo "INVALID_USERNAME=${{ secrets.INVALID_USERNAME }}" >> .env
+          echo "INVALID_USERNAME=${{ secrets.INVALID_USERNAME }}" >> .env
+          echo "LOCKED_USERNAME=${{ secrets.LOCKED_USERNAME }}" >> .env
+          echo "LOCKED_PASSWORD=${{ secrets.LOCKED_PASSWORD }}" >> .env
+          echo "MAIN_PAGE_URL=${{ secrets.MAIN_PAGE_URL }}" >> .env
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
