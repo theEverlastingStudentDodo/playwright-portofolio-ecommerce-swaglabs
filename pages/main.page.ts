@@ -1,6 +1,3 @@
-//
-//
-
 import { Locator, Page, expect } from '@playwright/test';
 import { configValues } from '../env-config/envConfig';
 import { mainPageTexts } from '../messages/mainPageTexts';
