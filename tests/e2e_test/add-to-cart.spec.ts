@@ -1,6 +1,3 @@
-//This is personal portfolio of the gitHub user with username theEverlastingStudentDodo
-// theEverlastingStudentDodo does not give consent to everybody copying this script for whatever use
-
 import { test, expect } from '@playwright/test';
 import { LoginPage,  } from '../../pages/login.page';
 import { configValues } from '../../env-config/envConfig';
@@ -35,6 +32,17 @@ test.describe('Add item to cart', () => {
         await expect(cartList).toContainText(mainPageTexts.productName1);
         await expect(cartList).toContainText(mainPageTexts.productName2);
     })
+
+    test('Remove one item from cart with single item present', async ({ page }) => {
+        const mainPage = new MainPage(page);
+        await mainPage.browseProductAndAddToCart(mainPageTexts.productName3);
+        await mainPage.cartButton.click();
+        const cartPage = new CartPage(page);
+        await cartPage.removeItemButton.click();
+        const cartList = cartPage.cartList;
+        await expect(cartList).not.toContainText(mainPageTexts.productName3);
+    })
+
 
 test.afterEach(async ({ page }) => {
     const mainPage = new MainPage(page);
