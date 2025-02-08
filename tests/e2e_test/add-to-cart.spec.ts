@@ -43,7 +43,7 @@ test.describe('Add item to cart', () => {
         await expect(cartList).not.toContainText(mainPageTexts.productName3);
     })
 
-    test.only('Remove one item from cart with multiple item present', async ({ page }) => {
+    test('Remove one item from cart with multiple item present', async ({ page }) => {
         const mainPage = new MainPage(page);
         await mainPage.browseProductAndAddToCart(mainPageTexts.productName3);
         await mainPage.browseProductAndAddToCart(mainPageTexts.productName4);
